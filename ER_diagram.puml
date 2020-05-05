@@ -1,0 +1,77 @@
+@startuml
+
+entity users {
+    *id
+    --
+    --
+    *account
+    *password
+    twitter_account
+    *created
+    *modified
+}
+
+entity bookmarks {
+    *id
+    --
+    *bookmark_url_id
+    *user_id
+    --
+    *title
+    description
+    *count
+    *looked_status
+    *favorite_status
+    *created
+    *modified
+    *deleted
+}
+
+entity bookmark_urls {
+    *id
+    --
+    --
+    *url
+    *created
+    *modified
+}
+
+entity tags {
+    *id
+    --
+    --
+    *name
+    *created
+    *modified
+    deleted
+}
+
+entity bookmarks_tags {
+    *id
+    --
+    *bookmark_id
+    *tag_id
+    --
+    *created
+    deleted
+}
+
+entity tag_favorites {
+    *id
+    --
+    *user_id
+    *tag_id
+    --
+    *created
+    deleted
+}
+
+
+bookmark_urls ||--|{ bookmarks
+users ||--|{ bookmarks
+users ||--|{ tag_favorites
+bookmarks ||--|{ bookmarks_tags
+tags ||--|{ bookmarks_tags
+tags ||--|{ tag_favorites
+
+@enduml
